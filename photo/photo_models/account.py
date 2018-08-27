@@ -20,6 +20,9 @@ class Account(models.Model):
     def __str__(self):
         return self.nickname
 
+    class Meta:
+        verbose_name = '用户列表'
+        verbose_name_plural = '用户列表'
     # def upload_avatar(self):
     #     from django.utils.safestring import mark_safe
     #     # mark_safe后就不会转义
@@ -39,6 +42,11 @@ class Competition(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = '赛事列表'
+        verbose_name_plural = '赛事列表'
+
+
 class PhotoList(models.Model):
     big_images = models.ImageField( '原图',upload_to='competition/images/', max_length=200, blank=True, null=True)
     user = models.ManyToManyField(Account, verbose_name='创建用户', blank=True,null=True)
@@ -46,7 +54,7 @@ class PhotoList(models.Model):
     competition = models.ManyToManyField(Competition, verbose_name='赛事', blank=True,null=False)
     title = models.CharField('标题', max_length=200)  # 标题
     sub_title = models.CharField('副标题', max_length=200)  # 副标题
-    desc = models.CharField('图片介绍', max_length=200)  # 副标题
+    desc = models.TextField('图片介绍', max_length=200)  # 副标题
     location = models.CharField('地点', max_length=200)  # 地点
     tags = models.CharField('标签', max_length=200)  # 大图
     price = models.FloatField("费用", default=0)  #费用
@@ -60,3 +68,11 @@ class PhotoList(models.Model):
     collect_users = models.ManyToManyField(Account, related_name='收藏用户', blank=True,null=True)
     buy_users = models.ManyToManyField(Account, related_name='购买用户', blank=True, null=True)
     like_users = models.ManyToManyField(Account, related_name='喜欢用户', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = '照片列表'
+        verbose_name_plural = '照片列表'
+

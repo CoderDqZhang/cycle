@@ -242,14 +242,12 @@ def return_photos(data,openid):
     else:
         json['is_like'] = True
     if data.buy_users.all().filter(openid=openid).count() == 0:
-        print(str(data.big_images))
         if Image.open('./media/logo_watermark/' + str(data.big_images)):
             json['image'] = define.MEDIAURL + 'logo_watermark/' + str(data.big_images)
         else:
             im = Image.open(settings.MEDIA_ROOT + "/" + str(data.big_images))
             im_c = image_tools.logo_watermark(im, './media/logo/logo.png')
             im_c.save('./media/logo_watermark/' + str(data.big_images))
-            print(im_c)
         json['is_buy'] = False
     else:
         json['image'] = define.MEDIAURL + str(data.big_images)
@@ -260,6 +258,4 @@ def return_photos(data,openid):
         json['collect_users'].append(acount_v.return_userinfo(user))
     for user in data.like_users.all():
         json['like_users'].append(acount_v.return_userinfo(user))
-
-    print(json)
     return json
