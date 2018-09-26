@@ -19,8 +19,8 @@ else:
     MEDIAURL = 'http://127.0.0.1:8000/media/'
 
 #微信小程序app-id/secret
-WEICHAT_APPID='wx8df2ccb21a4fd773'
-WEICHAT_SECRET= 'c9ada9eec82367554b251b22b4e406d4'
+WEICHAT_APPID='wxbb0350abfb3c20bf'
+WEICHAT_SECRET= '8cc4562eb21cde20add802f93dd12e6a'
 
 
 
@@ -30,8 +30,9 @@ GENDER = (
         (0, '未知')
     )
 
-UPDATA_USER_INFO = ['openid','nickname','gender',
-                    'avatar']
+UPDATA_USER_INFO = ['openid','avatar','city','country',
+                    'nickname','gender','province'
+                    ]
 
 GET_USER_INFO = ['openid']
 
@@ -41,9 +42,9 @@ CREATE_PHOTO = ['openid','game_subtitle','openid','ball_id','game_location','gam
                'game_price','game_start_time','game_end_time','game_referee',
                'game_number','game_place_condition','number','lat','lng']
 
-PHOTO_LIST = ['openid']
-
 COMPTITIONS_PHOTO_LIST = ['openid','comptitions_id']
+
+PHOTO_LIST = ['openid']
 
 SEARCH_LIST = ['openid','name']
 
@@ -53,7 +54,7 @@ PHOTO_COLLECT = ['openid','id','action']
 
 PHOTO_LIKE = ['openid','id','action']
 
-
+PHOTO_BUY = ['openid','id','action']
 #时间戳转换
 def timeStamp_to_date(timeStamp):
     dateArray = datetime.datetime.utcfromtimestamp(float(timeStamp))
@@ -134,6 +135,7 @@ def sign(data):
     # 创建md5对象
     hl = hashlib.md5()
     hl.update((strs + WEICHAT_APPID).encode(encoding='utf-8'))
+    print((strs + WEICHAT_APPID))
     print(hl.hexdigest())
     return hl.hexdigest()
 
@@ -149,14 +151,15 @@ def getaddress(address):
     data3 = data2.split(')')
     data4 = data3[0].split('(')
     JSON_DATA = json.loads(data4[1])
-    print(JSON_DATA['result']['location'])
     return JSON_DATA['result']['location']
 
 
 def getopenid(code):
     url = 'https://api.weixin.qq.com/sns/jscode2session?' \
           'appid='+WEICHAT_APPID+'&secret='+WEICHAT_SECRET+'&js_code='+code+'&grant_type=authorization_code'
+    print(url)
     data = urllib.request.urlopen(url)
     data1 = data.read()
+
     JSON_DATA = json.loads(str(data1).replace("'","").replace('b',""))
     return JSON_DATA['openid']
