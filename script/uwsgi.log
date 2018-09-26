@@ -8119,3 +8119,71 @@ Not Found: /
 [pid: 8393|app: 0|req: 725/3819] 176.216.67.41 () {32 vars in 463 bytes} [Wed Sep 26 12:54:40 2018] GET / => generated 2283 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
 Not Found: /
 [pid: 8396|app: 0|req: 728/3820] 47.92.4.72 () {34 vars in 507 bytes} [Wed Sep 26 12:59:45 2018] GET / => generated 2292 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+{'code': '021m4OhF12Bev107gmjF1XYOhF1m4Ohp', 'sign': '378ea0118aad5d9e6e5aeca0596a69a2'}
+64aa4476849c56328479e75ccba98f4d
+[pid: 8394|app: 0|req: 732/3821] 122.200.85.2 () {50 vars in 780 bytes} [Wed Sep 26 13:58:15 2018] POST /cycle/wechat/login/ => generated 2 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 99 bytes (1 switches on core 0)
+{'sign': '758467d2b07f499512e3bd4a76774b99'}
+4e4756d41e47c8c0588a111e7b6cdb6b
+Internal Server Error: /cycle/home/list/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./photo/photo_views/photo_v.py", line 61, in photo_list
+    print(checkrequest)
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 14-17: ordinal not in range(128)
+[pid: 8395|app: 0|req: 728/3822] 122.200.85.2 () {50 vars in 774 bytes} [Wed Sep 26 13:58:15 2018] POST /cycle/home/list/ => generated 58150 bytes in 78 msecs (HTTP/1.1 500) 4 headers in 129 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 8397|app: 0|req: 732/3823] 122.200.85.2 () {44 vars in 798 bytes} [Wed Sep 26 13:58:33 2018] GET /favicon.ico => generated 2331 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /
+[pid: 8393|app: 0|req: 726/3824] 122.200.85.2 () {46 vars in 857 bytes} [Wed Sep 26 13:58:35 2018] GET / => generated 2280 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /
+[pid: 8396|app: 0|req: 729/3825] 122.200.85.2 () {38 vars in 605 bytes} [Wed Sep 26 13:58:42 2018] HEAD / => generated 2286 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /
+[pid: 8394|app: 0|req: 733/3826] 122.200.85.2 () {46 vars in 611 bytes} [Wed Sep 26 13:58:51 2018] POST / => generated 2282 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /cycle/
+[pid: 8395|app: 0|req: 729/3827] 122.200.85.2 () {46 vars in 623 bytes} [Wed Sep 26 13:58:57 2018] POST /cycle/ => generated 3721 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /cycle/
+[pid: 8397|app: 0|req: 733/3828] 122.200.85.2 () {46 vars in 623 bytes} [Wed Sep 26 13:59:01 2018] POST /cycle/ => generated 3721 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /cycle/home
+[pid: 8393|app: 0|req: 727/3829] 122.200.85.2 () {46 vars in 631 bytes} [Wed Sep 26 13:59:13 2018] POST /cycle/home => generated 3733 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /cycle/home
+[pid: 8396|app: 0|req: 730/3830] 122.200.85.2 () {46 vars in 629 bytes} [Wed Sep 26 13:59:17 2018] POST /cycle/home => generated 3733 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 8394|app: 0|req: 734/3831] 122.200.85.2 () {44 vars in 888 bytes} [Wed Sep 26 13:59:41 2018] GET /admin/ => generated 4446 bytes in 21 msecs (HTTP/1.1 200) 6 headers in 227 bytes (1 switches on core 0)
+[pid: 8395|app: 0|req: 730/3832] 122.200.85.2 () {46 vars in 967 bytes} [Wed Sep 26 13:59:47 2018] GET /admin/photo/competition/ => generated 4453 bytes in 228 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 8393|app: -1|req: -1/3833] 122.200.85.2 () {44 vars in 899 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/css/changelists.css => generated 6170 bytes in 16 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8393|app: -1|req: -1/3834] 122.200.85.2 () {44 vars in 910 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/admin/RelatedObjectLookups.js => generated 6897 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8395|app: -1|req: -1/3835] 122.200.85.2 () {44 vars in 866 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/core.js => generated 7134 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8394|app: -1|req: -1/3836] 122.200.85.2 () {44 vars in 880 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/jquery.init.js => generated 363 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 8393|app: -1|req: -1/3837] 122.200.85.2 () {44 vars in 872 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/actions.js => generated 6502 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8396|app: -1|req: -1/3838] 122.200.85.2 () {44 vars in 898 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/vendor/jquery/jquery.js => generated 258648 bytes in 15 msecs via sendfile() (HTTP/1.1 200) 2 headers in 89 bytes (0 switches on core 0)
+[pid: 8395|app: -1|req: -1/3839] 122.200.85.2 () {44 vars in 870 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/urlify.js => generated 8729 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8394|app: -1|req: -1/3840] 122.200.85.2 () {44 vars in 880 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/prepopulate.js => generated 1538 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8393|app: -1|req: -1/3841] 122.200.85.2 () {44 vars in 902 bytes} [Wed Sep 26 13:59:47 2018] GET /static/admin/js/vendor/xregexp/xregexp.js => generated 128820 bytes in 40 msecs via sendfile() (HTTP/1.1 200) 2 headers in 89 bytes (0 switches on core 0)
+[pid: 8397|app: 0|req: 734/3842] 122.200.85.2 () {44 vars in 846 bytes} [Wed Sep 26 13:59:47 2018] GET /admin/jsi18n/ => generated 7684 bytes in 121 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 8396|app: -1|req: -1/3843] 122.200.85.2 () {44 vars in 921 bytes} [Wed Sep 26 13:59:50 2018] GET /static/admin/img/tooltag-add.svg => generated 331 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 8395|app: 0|req: 731/3844] 122.200.85.2 () {46 vars in 1003 bytes} [Wed Sep 26 13:59:52 2018] GET /admin/photo/competition/1/change/ => generated 7388 bytes in 117 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 8394|app: -1|req: -1/3845] 122.200.85.2 () {44 vars in 896 bytes} [Wed Sep 26 13:59:52 2018] GET /static/admin/css/forms.css => generated 8173 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8393|app: 0|req: 728/3846] 122.200.85.2 () {44 vars in 855 bytes} [Wed Sep 26 13:59:52 2018] GET /admin/jsi18n/ => generated 7684 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 8397|app: -1|req: -1/3847] 122.200.85.2 () {44 vars in 883 bytes} [Wed Sep 26 13:59:52 2018] GET /static/admin/js/calendar.js => generated 7777 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8396|app: -1|req: -1/3848] 122.200.85.2 () {44 vars in 889 bytes} [Wed Sep 26 13:59:52 2018] GET /static/admin/js/change_form.js => generated 712 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 8395|app: -1|req: -1/3849] 122.200.85.2 () {44 vars in 913 bytes} [Wed Sep 26 13:59:52 2018] GET /static/admin/js/admin/DateTimeShortcuts.js => generated 20283 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 8394|app: -1|req: -1/3850] 122.200.85.2 () {44 vars in 899 bytes} [Wed Sep 26 13:59:52 2018] GET /static/admin/js/prepopulate_init.js => generated 495 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 8393|app: -1|req: -1/3851] 122.200.85.2 () {44 vars in 900 bytes} [Wed Sep 26 13:59:52 2018] GET /static/admin/css/widgets.css => generated 10340 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 8397|app: -1|req: -1/3852] 122.200.85.2 () {44 vars in 928 bytes} [Wed Sep 26 13:59:53 2018] GET /static/admin/img/icon-calendar.svg => generated 1086 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 8396|app: 0|req: 731/3853] 122.200.85.2 () {54 vars in 1267 bytes} [Wed Sep 26 13:59:58 2018] POST /admin/photo/competition/1/change/ => generated 0 bytes in 76 msecs (HTTP/1.1 302) 8 headers in 544 bytes (1 switches on core 0)
+[pid: 8395|app: 0|req: 732/3854] 122.200.85.2 () {48 vars in 1274 bytes} [Wed Sep 26 13:59:59 2018] GET /admin/photo/competition/ => generated 4635 bytes in 32 msecs (HTTP/1.1 200) 8 headers in 465 bytes (1 switches on core 0)
+[pid: 8394|app: 0|req: 735/3855] 122.200.85.2 () {44 vars in 846 bytes} [Wed Sep 26 13:59:59 2018] GET /admin/jsi18n/ => generated 7684 bytes in 7 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 8393|app: -1|req: -1/3856] 122.200.85.2 () {44 vars in 915 bytes} [Wed Sep 26 13:59:59 2018] GET /static/admin/img/icon-yes.svg => generated 436 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 8397|app: 0|req: 735/3857] 122.200.85.2 () {46 vars in 961 bytes} [Wed Sep 26 14:00:01 2018] GET /admin/photo/ => generated 3281 bytes in 35 msecs (HTTP/1.1 200) 6 headers in 227 bytes (1 switches on core 0)
+[pid: 8396|app: 0|req: 732/3858] 122.200.85.2 () {46 vars in 969 bytes} [Wed Sep 26 14:00:03 2018] GET /admin/photo/photolist/ => generated 4450 bytes in 49 msecs (HTTP/1.1 200) 7 headers in 381 bytes (1 switches on core 0)
+[pid: 8395|app: 0|req: 733/3859] 122.200.85.2 () {44 vars in 844 bytes} [Wed Sep 26 14:00:04 2018] GET /admin/jsi18n/ => generated 7684 bytes in 7 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+[pid: 8394|app: 0|req: 736/3860] 122.200.85.2 () {46 vars in 997 bytes} [Wed Sep 26 14:00:06 2018] GET /admin/photo/photolist/1/change/ => generated 16037 bytes in 252 msecs (HTTP/1.1 200) 7 headers in 382 bytes (1 switches on core 0)
+[pid: 8393|app: 0|req: 729/3861] 122.200.85.2 () {44 vars in 853 bytes} [Wed Sep 26 14:00:06 2018] GET /admin/jsi18n/ => generated 7684 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 115 bytes (1 switches on core 0)
+Not Found: /static/admin/image/login/zt.png
+[pid: 8397|app: 0|req: 736/3862] 175.0.229.124 () {38 vars in 724 bytes} [Wed Sep 26 14:07:18 2018] GET /static/admin/image/login/zt.png?t=a359a53c6b4247f5bbb2fa322d437138 => generated 1849 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /
+[pid: 8396|app: 0|req: 733/3863] 183.60.210.62 () {40 vars in 502 bytes} [Wed Sep 26 14:19:49 2018] GET / => generated 2281 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
