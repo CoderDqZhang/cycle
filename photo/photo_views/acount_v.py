@@ -9,7 +9,7 @@ from photo.photo_models.account import Account
 
 def verify_user(request):
     if request.method == 'POST':
-        # print(request.POST)
+        print(request.POST)
         # 初始化返回的字典
         data = {}
         # 获取小程序数据
@@ -17,11 +17,10 @@ def verify_user(request):
         if checkrequest is None:
             code = body['code']
             openid = define.getopenid(code)
-            print(openid)
+            print("openid = "+openid)
             try:
                 user = Account.objects.get(openid=openid)
-                print(user)
-                data['user'] = model_to_dict(user)
+                data['user'] = return_userinfo(Account.objects.get(openid=openid))
                 return JsonResponse(define.response("success", 0, None, data))
             except Account.DoesNotExist:
                 try:
@@ -33,13 +32,11 @@ def verify_user(request):
                     )
                     user_ins.save()
                     user_ins.is_active = True
-                print(body['avatar'])
-
                 account = Account.objects.create(
                     user=user_ins,
                     openid=openid
                 )
-                data['user'] = model_to_dict(Account.objects.get(openid=openid))
+                data['user'] = return_userinfo(Account.objects.get(openid=openid))
                 return JsonResponse(define.response("success", 0, None, data))
             else:
                 return JsonResponse(define.response("success", 0, checkrequest))
@@ -55,12 +52,11 @@ def update_user_info(request):
             body, checkrequest = define.request_verif(request,define.UPDATA_USER_INFO)
             if checkrequest is None:
                 user.nickname = body['nickname']
-                user.phone = body['phone']
                 user.province = body['province']
                 user.avatar = body['avatar']
                 user.save()
                 data = {}
-                data['user'] = model_to_dict(user)
+                data['user'] = return_userinfo(user)
                 return JsonResponse(define.response("success", 0, None, data))
             else:
                 return JsonResponse(define.response("success", 0, checkrequest))
@@ -93,5 +89,5 @@ def get_user_info(request):
 
 def return_userinfo(data):
     json = model_to_dict(data,exclude=['avatar'])
-    json['avatar'] = define.MEDIAURL + str(data.avatar)
+    json['avatar'] = str(data.avatar)
     return json

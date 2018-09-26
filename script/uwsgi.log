@@ -553,6 +553,7 @@ invalid request block size: 21573 (max 4096)...skip
 invalid request block size: 21573 (max 4096)...skip
 invalid request block size: 21573 (max 4096)...skip
 invalid request block size: 21573 (max 4096)...skip
+<<<<<<< HEAD
 >>>>>>> 7a532e6d578e361d258f5867c0632f92f6b8ae0e
 *** Starting uWSGI 2.0.17.1 (64bit) on [Tue Aug 28 15:49:30 2018] ***
 compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-16) on 27 August 2018 07:28:24
@@ -8187,3 +8188,45 @@ Not Found: /static/admin/image/login/zt.png
 [pid: 8397|app: 0|req: 736/3862] 175.0.229.124 () {38 vars in 724 bytes} [Wed Sep 26 14:07:18 2018] GET /static/admin/image/login/zt.png?t=a359a53c6b4247f5bbb2fa322d437138 => generated 1849 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
 Not Found: /
 [pid: 8396|app: 0|req: 733/3863] 183.60.210.62 () {40 vars in 502 bytes} [Wed Sep 26 14:19:49 2018] GET / => generated 2281 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+=======
+...brutally killing workers...
+[deadlock-detector] pid 91192 was holding lock thunder (0x106483000)
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /Users/zhang/Desktop
+closing all non-uwsgi socket fds > 2 (max_fd = 7168)...
+found fd 3 mapped to socket 0 (127.0.0.1:8001)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from test.ini
+[uwsgi-static] added mapping for /static => /Users/zhang/Documents/Python/cycle/photo/static
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sat Sep 22 17:32:35 2018] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.1) on 06 August 2018 12:28:47
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: MacBook-Pro.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/zhang/Desktop
+detected binary path: /usr/local/bin/uwsgi
+chdir() to /Users/zhang/Documents/Python/cycle/
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 7168
+building mime-types dictionary from file /etc/apache2/mime.types...1003 entry found
+lock engine: OSX spinlocks
+thunder lock: enabled
+uwsgi socket 0 inherited INET address 127.0.0.1:8001 fd 3
+Python version: 3.6.5 (default, May 25 2018, 19:18:58)  [GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.1)]
+Python main interpreter initialized at 0x7fb7a2811e00
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 162160 bytes (158 KB) for 1 cores
+*** Operational MODE: single process ***
+4a:00:06:1d:04:80
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x7fb7a2811e00 pid: 91180 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 91180)
+spawned uWSGI worker 1 (pid: 40015, cores: 1)
+>>>>>>> 1a102366720017eacdd0da08a07095d56c5a1f21

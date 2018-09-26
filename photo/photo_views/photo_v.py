@@ -7,7 +7,7 @@ from PIL import Image  #pip install pillow
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
-from photo.photo_models.account import Account,PhotoList,Competition
+from photo.photo_models.account import Account,PhotoList,Competition,Photo
 from photo.utils import upload_qiniu
 from django.db.models import Q
 from photo.photo_views import acount_v
@@ -51,6 +51,37 @@ from cycle import settings
 #         return JsonResponse(define.response("success",0,"请使用POST方式请求"))
 #     return JsonResponse(data)
 
+def test(request):
+    upload_qiniu.get_image_info('http://p9it92m77.bkt.clouddn.com/7fee1a0ac05e11e88e074a00061d0480.JPEG')
+    return JsonResponse({'success':'success'})
+
+def competitions_list(request):
+    if request.method == 'POST':
+        # print(request.POST)
+        # 初始化返回的字典
+        data = {}
+        # 获取小程序数据
+        # body, checkrequest = define.request_verif(request, define.PHOTO_LIST)
+        competitions = Competition.objects.all()
+        data['competitions'] = []
+        for photo in competitions:
+            data['competitions'].append(return_comptitions(data=photo))
+        return JsonResponse(define.response("success", 0, None, data))
+        # print(checkrequest)
+        # if checkrequest is None:
+        #     # openid = body['openid']
+        #     try:
+        #         # user = Account.objects.get(openid=openid)
+        #
+        #     except Account.DoesNotExist:
+        #         data['message'] = '用户不存在'
+        #         return JsonResponse(define.response("success", 0, None, data))
+        #     else:
+        #         return JsonResponse(define.response("success", 0, checkrequest))
+    else:
+        return JsonResponse(define.response("success",0,"请使用POST方式请求"))
+    return JsonResponse(data)
+
 def photo_list(request):
     if request.method == 'POST':
         # print(request.POST)
@@ -58,15 +89,14 @@ def photo_list(request):
         data = {}
         # 获取小程序数据
         body, checkrequest = define.request_verif(request, define.PHOTO_LIST)
-        print(checkrequest)
         if checkrequest is None:
             openid = body['openid']
             try:
                 user = Account.objects.get(openid=openid)
-                competitions = Competition.objects.all()
-                data['competitions'] = []
-                for photo in competitions:
-                    data['competitions'].append(return_comptitions(data=photo, openid=openid))
+                photos = PhotoList.objects.all()
+                data['photos'] = []
+                for photo in photos:
+                    data['photos'].append(return_photos(data=photo, openid=openid))
                 return JsonResponse(define.response("success", 0, None, data))
             except Account.DoesNotExist:
                 data['message'] = '用户不存在'
@@ -180,9 +210,9 @@ def collect_photos(request):
                     photo.collect_users.add(user)
                 else:
                     photo.collect_users.remove(user)
-                photo['collect_number'] = photo.collect_users.all().count()
+                photo.collect_number = photo.collect_users.all().count()
                 photo.save()
-                data['photo'] = return_photos(data=photo, openid=openid)
+                data['photos'] = return_photos(data=photo, openid=openid)
                 return JsonResponse(define.response("success", 0, None, data))
             except Account.DoesNotExist:
                 data['message'] = '用户不存在'
@@ -193,10 +223,43 @@ def collect_photos(request):
         return JsonResponse(define.response("success",0,"请使用POST方式请求"))
     return JsonResponse(data)
 
-def like_photos(request):
+def buy_photos(request):
     if request.method == 'POST':
         data = {}
-        body, checkrequest = define.request_verif(request, define.PHOTO_LIKE)
+        body, checkrequest = define.request_verif(request, define.PHOTO_BUY)
+        print(checkrequest)
+        if checkrequest is None:
+            openid = body['openid']
+            try:
+                user = Account.objects.get(openid=openid)
+                print(body['id'])
+                photo = PhotoList.objects.get(id=body['id'])
+                if body['action'] == 'add':
+                    photo.buy_users.add(user)
+                else:
+                    photo.buy_users.remove(user)
+                print(photo.buy_users.all().count())
+                photo.buy_number = photo.buy_users.all().count()
+                photo.save()
+                data['photos'] = return_photos(data=photo, openid=openid)
+                return JsonResponse(define.response("success", 0, None, data))
+            except Account.DoesNotExist:
+                data['message'] = '用户不存在'
+                return JsonResponse(define.response("success", 0, None, data))
+            else:
+                return JsonResponse(define.response("success", 0, checkrequest))
+    else:
+        return JsonResponse(define.response("success",0,"请使用POST方式请求"))
+    return JsonResponse(data)
+
+
+def like_photos(request):
+    if request.method == 'POST':
+        # print(request.POST)
+        # 初始化返回的字典
+        data = {}
+        # 获取小程序数据
+        body, checkrequest = define.request_verif(request, define.PHOTO_COLLECT)
         print(checkrequest)
         if checkrequest is None:
             openid = body['openid']
@@ -207,9 +270,9 @@ def like_photos(request):
                     photo.like_users.add(user)
                 else:
                     photo.like_users.remove(user)
-                photo['like_number'] = photo.collect_users.all().count()
+                photo.like_number = photo.like_users.all().count()
                 photo.save()
-                data['photo'] = return_photos(data=photo, openid=openid)
+                data['photos'] = return_photos(data=photo, openid=openid)
                 return JsonResponse(define.response("success", 0, None, data))
             except Account.DoesNotExist:
                 data['message'] = '用户不存在'
@@ -220,19 +283,25 @@ def like_photos(request):
         return JsonResponse(define.response("success",0,"请使用POST方式请求"))
     return JsonResponse(data)
 
-def return_comptitions(data,openid):
-    json = model_to_dict(data)
+def return_comptitions(data):
+    json = model_to_dict(data, exclude=['photos'])
+    json['photos'] = []
+    for photo in data.photos.all():
+        json['photos'].append(model_to_dict(photo, exclude=['s_url']))
     return json
 
 def return_photos(data,openid):
     json = model_to_dict(data,exclude=['user','buy_users',
-                                       'collect_users','like_users','big_images','competition'])
+                                       'collect_users','like_users','big_images','competition','photos'])
     json['user'] = []
     json['collect_users'] = []
     json['like_users'] = []
+    json['buy_users'] = []
     json['like_number'] = data.like_users.all().count()
     json['collect_number'] = data.collect_users.all().count()
     json['buy_number'] = data.buy_users.all().count()
+    json['photos'] = []
+    json['competition'] = return_comptitions(data.competition.get())
     if data.collect_users.all().filter(openid=openid).count() == 0:
         json['is_collect'] = False
     else:
@@ -242,15 +311,14 @@ def return_photos(data,openid):
     else:
         json['is_like'] = True
     if data.buy_users.all().filter(openid=openid).count() == 0:
-        if Image.open('./media/logo_watermark/' + str(data.big_images)):
-            json['image'] = define.MEDIAURL + 'logo_watermark/' + str(data.big_images)
-        else:
-            im = Image.open(settings.MEDIA_ROOT + "/" + str(data.big_images))
-            im_c = image_tools.logo_watermark(im, './media/logo/logo.png')
-            im_c.save('./media/logo_watermark/' + str(data.big_images))
+        for photo in data.photos.all():
+            photo_json = model_to_dict(photo, exclude=['id','url'])
+            photo_json['url'] = photo_json['s_url']
+            json['photos'].append(photo_json)
         json['is_buy'] = False
     else:
-        json['image'] = define.MEDIAURL + str(data.big_images)
+        for photo in data.photos.all():
+            json['photos'].append(model_to_dict(photo, exclude=['id','s_url']))
         json['is_buy'] = True
     for user in data.user.all():
         json['user'].append(acount_v.return_userinfo(user))
@@ -258,4 +326,6 @@ def return_photos(data,openid):
         json['collect_users'].append(acount_v.return_userinfo(user))
     for user in data.like_users.all():
         json['like_users'].append(acount_v.return_userinfo(user))
+    for user in data.buy_users.all():
+        json['buy_users'].append(acount_v.return_userinfo(user))
     return json

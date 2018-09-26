@@ -1,0 +1,11 @@
+{% extends "xadmin/views/form.html" %}
+{% load crispy_forms_tags %}
+ {% block form_top %}
+<fieldset class="module">
+  <h2>选择图片</h2>
+  <input name="photos_multiple" type="file" multiple />
+</fieldset>
+     <br />
+     <br />
+     <br />
+{% endblock %}
