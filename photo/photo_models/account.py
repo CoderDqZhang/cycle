@@ -36,6 +36,7 @@ class Photo(models.Model):
     s_height = models.IntegerField('照片高', max_length=200, blank=True, null=True)
     width = models.IntegerField('照片宽', max_length=200, blank=True, null=True)
     height = models.IntegerField('照片高', max_length=200, blank=True, null=True)
+    is_buy = models.IntegerField('是否喜欢', default=0,null=True)
 
     def __str__(self):
         return self.url

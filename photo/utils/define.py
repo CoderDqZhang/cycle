@@ -19,8 +19,8 @@ else:
     MEDIAURL = 'http://127.0.0.1:8000/media/'
 
 #微信小程序app-id/secret
-WEICHAT_APPID='wx8df2ccb21a4fd773'
-WEICHAT_SECRET= 'c9ada9eec82367554b251b22b4e406d4'
+WEICHAT_APPID='wxbb0350abfb3c20bf'
+WEICHAT_SECRET= '8cc4562eb21cde20add802f93dd12e6a'
 
 
 
@@ -30,8 +30,9 @@ GENDER = (
         (0, '未知')
     )
 
-UPDATA_USER_INFO = ['openid','nickname','gender',
-                    'avatar']
+UPDATA_USER_INFO = ['openid','avatar','city','country',
+                    'nickname','gender','province'
+                    ]
 
 GET_USER_INFO = ['openid']
 
@@ -134,6 +135,7 @@ def sign(data):
     # 创建md5对象
     hl = hashlib.md5()
     hl.update((strs + WEICHAT_APPID).encode(encoding='utf-8'))
+    print((strs + WEICHAT_APPID))
     print(hl.hexdigest())
     return hl.hexdigest()
 
@@ -155,7 +157,9 @@ def getaddress(address):
 def getopenid(code):
     url = 'https://api.weixin.qq.com/sns/jscode2session?' \
           'appid='+WEICHAT_APPID+'&secret='+WEICHAT_SECRET+'&js_code='+code+'&grant_type=authorization_code'
+    print(url)
     data = urllib.request.urlopen(url)
     data1 = data.read()
+
     JSON_DATA = json.loads(str(data1).replace("'","").replace('b',""))
     return JSON_DATA['openid']
