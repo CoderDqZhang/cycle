@@ -50,13 +50,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
-#    'xadmin',
-#    'crispy_forms',
-=======
     #'xadmin',
     #'crispy_forms',
->>>>>>> bd55dc9e1ab348c660c23bf86bb6769378a5daa4
     'reversion',
     'django.contrib.admin',
     'django.contrib.auth',
