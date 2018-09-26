@@ -41,9 +41,9 @@ CREATE_PHOTO = ['openid','game_subtitle','openid','ball_id','game_location','gam
                'game_price','game_start_time','game_end_time','game_referee',
                'game_number','game_place_condition','number','lat','lng']
 
-PHOTO_LIST = ['openid']
-
 COMPTITIONS_PHOTO_LIST = ['openid','comptitions_id']
+
+PHOTO_LIST = ['openid']
 
 SEARCH_LIST = ['openid','name']
 
@@ -149,7 +149,6 @@ def getaddress(address):
     data3 = data2.split(')')
     data4 = data3[0].split('(')
     JSON_DATA = json.loads(data4[1])
-    print(JSON_DATA['result']['location'])
     return JSON_DATA['result']['location']
 
 

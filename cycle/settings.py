@@ -22,6 +22,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-+c*dm%gor8eoalqqzs-=o0xt$)&iqmbzbbeeunh0@hi2qk5-0'
 
+
+#七牛云存储
+QINIU_ACCESS_KEY = 'lGDN5XTYH4HWk_i7GRre-izRRk3AE7gmxL5u6I0t'
+QINIU_SECRET_KEY = 'vpryXIs8kIJ3pWUfGmK1Y4vnHhOCRO5xMDQwN50m'
+QINIU_BUCKET_NAME = 'ball'
+QINIU_BUCKET_DOMAIN = 'p9it92m77.bkt.clouddn.com'
+QINIU_SECURE_URL = True      #使用http
+
+#七牛保存图片
+MEDIA_URL1 = "http://"+QINIU_BUCKET_DOMAIN + "/"
+MEDIA_ROOT1 = os.path.join(BASE_DIR, 'media')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -134,6 +146,9 @@ USE_TZ = False
 USE_I18N = True
 
 USE_L10N = True
+
+
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
 
 
 # Static files (CSS, JavaScript, Images)
