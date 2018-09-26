@@ -210,9 +210,9 @@ def collect_photos(request):
                     photo.collect_users.add(user)
                 else:
                     photo.collect_users.remove(user)
-                photo['collect_number'] = photo.collect_users.all().count()
+                photo.collect_number = photo.collect_users.all().count()
                 photo.save()
-                data['photo'] = return_photos(data=photo, openid=openid)
+                data['photos'] = return_photos(data=photo, openid=openid)
                 return JsonResponse(define.response("success", 0, None, data))
             except Account.DoesNotExist:
                 data['message'] = '用户不存在'
@@ -223,10 +223,43 @@ def collect_photos(request):
         return JsonResponse(define.response("success",0,"请使用POST方式请求"))
     return JsonResponse(data)
 
-def like_photos(request):
+def buy_photos(request):
     if request.method == 'POST':
         data = {}
-        body, checkrequest = define.request_verif(request, define.PHOTO_LIKE)
+        body, checkrequest = define.request_verif(request, define.PHOTO_BUY)
+        print(checkrequest)
+        if checkrequest is None:
+            openid = body['openid']
+            try:
+                user = Account.objects.get(openid=openid)
+                print(body['id'])
+                photo = PhotoList.objects.get(id=body['id'])
+                if body['action'] == 'add':
+                    photo.buy_users.add(user)
+                else:
+                    photo.buy_users.remove(user)
+                print(photo.buy_users.all().count())
+                photo.buy_number = photo.buy_users.all().count()
+                photo.save()
+                data['photos'] = return_photos(data=photo, openid=openid)
+                return JsonResponse(define.response("success", 0, None, data))
+            except Account.DoesNotExist:
+                data['message'] = '用户不存在'
+                return JsonResponse(define.response("success", 0, None, data))
+            else:
+                return JsonResponse(define.response("success", 0, checkrequest))
+    else:
+        return JsonResponse(define.response("success",0,"请使用POST方式请求"))
+    return JsonResponse(data)
+
+
+def like_photos(request):
+    if request.method == 'POST':
+        # print(request.POST)
+        # 初始化返回的字典
+        data = {}
+        # 获取小程序数据
+        body, checkrequest = define.request_verif(request, define.PHOTO_COLLECT)
         print(checkrequest)
         if checkrequest is None:
             openid = body['openid']
@@ -237,9 +270,9 @@ def like_photos(request):
                     photo.like_users.add(user)
                 else:
                     photo.like_users.remove(user)
-                photo['like_number'] = photo.collect_users.all().count()
+                photo.like_number = photo.like_users.all().count()
                 photo.save()
-                data['photo'] = return_photos(data=photo, openid=openid)
+                data['photos'] = return_photos(data=photo, openid=openid)
                 return JsonResponse(define.response("success", 0, None, data))
             except Account.DoesNotExist:
                 data['message'] = '用户不存在'
@@ -263,6 +296,7 @@ def return_photos(data,openid):
     json['user'] = []
     json['collect_users'] = []
     json['like_users'] = []
+    json['buy_users'] = []
     json['like_number'] = data.like_users.all().count()
     json['collect_number'] = data.collect_users.all().count()
     json['buy_number'] = data.buy_users.all().count()
@@ -292,4 +326,6 @@ def return_photos(data,openid):
         json['collect_users'].append(acount_v.return_userinfo(user))
     for user in data.like_users.all():
         json['like_users'].append(acount_v.return_userinfo(user))
+    for user in data.buy_users.all():
+        json['buy_users'].append(acount_v.return_userinfo(user))
     return json

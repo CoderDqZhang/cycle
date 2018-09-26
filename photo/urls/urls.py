@@ -18,6 +18,7 @@ urlpatterns = [
     url('photo/list/',photo_v.photo_list),
     url('competitions/photo/',photo_v.competitions_photo_list),
     url('photo/collect/',photo_v.collect_photos),
+    url('photo/buy/', photo_v.buy_photos),
     url('photo/like/',photo_v.like_photos),
     url('photo/filter/',photo_v.filter_photo),
     url('photo/search/',photo_v.search_photo)

@@ -54,7 +54,7 @@ PHOTO_COLLECT = ['openid','id','action']
 
 PHOTO_LIKE = ['openid','id','action']
 
-
+PHOTO_BUY = ['openid','id','action']
 #时间戳转换
 def timeStamp_to_date(timeStamp):
     dateArray = datetime.datetime.utcfromtimestamp(float(timeStamp))
