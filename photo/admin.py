@@ -3,6 +3,11 @@ from photo.photo_models.account import Account,PhotoList,Competition,Photo
 from photo.utils import upload_qiniu
 from cycle import settings
 
+#import sys;
+ 
+#reload(sys);
+#sys.setdefaultencoding("utf8")
+
 # Register your models here.
 class CompetitionAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
