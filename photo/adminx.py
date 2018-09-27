@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# encoding=utf8
+import sys
+import importlib
+importlib.reload(sys)  
+
 import xadmin
 import xadmin.views as xviews
 from xadmin.plugins.auth import UserAdmin
@@ -54,7 +60,7 @@ class PhotoListAdmin(object):
 
     def save_models(self):
         obj = self.new_obj
-        print(obj)
+       # print(obj)
         obj.save()
         # flag = self.obj is None and 'create' or 'change'
         # self.log(flag, self.change_message(), self.obj)
@@ -63,7 +69,7 @@ class PhotoListAdmin(object):
             url,url_s = upload_qiniu.qiniu_upload_comparess("Competition", afile)
             photo_info = upload_qiniu.get_image_info(settings.MEDIA_URL1 + url)
             photo_info_s = upload_qiniu.get_image_info(settings.MEDIA_URL1 + url_s)
-            print(photo_info_s['height'])
+        #    print(photo_info_s['height'])
             photo = Photo.objects.create(url=settings.MEDIA_URL1 + url,s_url= settings.MEDIA_URL1 + url_s,
                                          width=photo_info['width'], height=photo_info['height'],
                                          s_height=photo_info_s['height'], s_width=photo_info_s['width']
@@ -82,7 +88,7 @@ class CompetitionAdmin(object):
 
     def save_models(self):
         obj = self.new_obj
-        print(obj)
+      #  print(obj)
         obj.save()
         # flag = self.obj is None and 'create' or 'change'
         # self.log(flag, self.change_message(), self.obj)
@@ -92,8 +98,8 @@ class CompetitionAdmin(object):
             photo_info = upload_qiniu.get_image_info(settings.MEDIA_URL1 + url)
             photo_info_s = upload_qiniu.get_image_info(settings.MEDIA_URL1 + url_s)
             photo_info_s['height']
-            print('ddddd')
-            print(photo_info_s)
+       #     print('ddddd')
+        #    print(photo_info_s)
             photo = Photo.objects.create(url=settings.MEDIA_URL1 + url,s_url= settings.MEDIA_URL1 + url_s,
                                          width = photo_info['width'], height = photo_info['height'],
                                          s_height = photo_info_s['height'], s_width = photo_info_s['width'])

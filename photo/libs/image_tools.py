@@ -57,7 +57,7 @@ def logo_watermark(img, logo_path):
 
 
 
-def text_watermark(img, text, out_file="./media/upload_image/test4.jpg", angle=23, opacity=0.50):
+def text_watermark(img, text, out_file="./media/upload_image/upfile.JPEG", angle=23, opacity=0.50):
     '''''
     添加一个文字水印，做成透明水印的模样，应该是png图层合并
     http://www.pythoncentral.io/watermark-images-python-2x/

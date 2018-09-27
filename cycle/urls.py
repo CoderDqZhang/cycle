@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from cycle import settings
-#import xadmin
+import xadmin
 from cycle.settings import MEDIA_ROOT
 from django.views.static import serve
 
@@ -27,7 +27,7 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   #  path('xadmin/', xadmin.site.urls),
+    path('xadmin/', xadmin.site.urls),
     url(r'^cycle/', include('photo.urls.urls')),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 
