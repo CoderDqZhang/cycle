@@ -44,7 +44,7 @@ class Photo(models.Model):
 class Competition(models.Model):
     photos = models.ManyToManyField(Photo, verbose_name='照片', blank=True,null=True)
     name = models.CharField('标题', max_length=200, blank=True, null=True)
-    desc = models.TextField('介绍', max_length=200, blank=True, null=True)
+    desc = models.TextField('介绍', blank=True, null=True)
     start_time = models.DateField('开始时间')
     end_time = models.DateField('结束时间')
     read_num = models.IntegerField('阅读数量',default=0)
