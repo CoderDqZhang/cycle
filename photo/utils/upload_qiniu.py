@@ -28,7 +28,7 @@ def qiniu_upload_comparess(key, localfile):
     else:
         im = image
     im.save('./media/' + name)  # 在根目录有个media文件
-    im_c = image_tools.text_watermark(im,text='图片水印')
+    im_c = image_tools.text_watermark(im,text='寰球赛视')
     im_c = Image.open('./media/upload_image/' + name)
     print(im_c.format)
     im_c.save('./media/upload_image/' + name)
