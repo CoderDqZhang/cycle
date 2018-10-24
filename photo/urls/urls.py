@@ -7,6 +7,8 @@ urlpatterns = [
 
     url('test',photo_v.test),
 
+    url('index',photo_v.index),
+
     #User
     url('^wechat/login/',acount_v.verify_user),
     url('^update/userinfo/',acount_v.update_user_info),

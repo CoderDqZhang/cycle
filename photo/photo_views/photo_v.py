@@ -51,6 +51,10 @@ from cycle import settings
 #         return JsonResponse(define.response("success",0,"请使用POST方式请求"))
 #     return JsonResponse(data)
 
+
+def index(request):
+    return render(request, 'html/index.html',)
+
 def test(request):
     upload_qiniu.get_image_info('http://p9it92m77.bkt.clouddn.com/7fee1a0ac05e11e88e074a00061d0480.JPEG')
     return JsonResponse({'success':'success'})
