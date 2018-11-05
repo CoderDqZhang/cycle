@@ -4,6 +4,7 @@ import sys
 from django.contrib.auth.models import User
 from django.db import models
 from photo.utils import define
+from mdeditor.fields import MDTextField
 
 importlib.reload(sys)
 
@@ -43,7 +44,7 @@ class Photo(models.Model):
 
 class Competition(models.Model):
     photos = models.ManyToManyField(Photo, verbose_name='照片', blank=True,null=True)
-    name = models.CharField('标题', max_length=200, blank=True, null=True)
+    name = MDTextField()
     desc = models.TextField('介绍', blank=True, null=True)
     start_time = models.DateField('开始时间')
     end_time = models.DateField('结束时间')
